@@ -86,12 +86,25 @@ struct MinView: View {
     @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
-        HStack {
+        VStack {
             Text(mc.mc_minutes_display)
                 .font(.system(size: fontSize))
-                .foregroundColor(mc.mc_colorchoice != 0 ?
-                                 mc.mc_color[mc.mc_colorchoice] : (colorScheme == .dark ? .white : .black))
+            HStack {
+                if (mc.mc_minutes_display == "1") {
+                    Text("minute")
+                } else {
+                    Text("minutes")
+                }
+                if (mc.mc_countdown) {
+                    Text("until")
+                } else {
+                    Text("since")
+                }
+                Text("midnight")
+            }
         }
+        .foregroundColor(mc.mc_colorchoice != 0 ?
+                         mc.mc_color[mc.mc_colorchoice] : (colorScheme == .dark ? .white : .black))
         .padding(.vertical, vPadding)
         .padding(.horizontal, hPadding)
     }
@@ -102,12 +115,25 @@ struct SecView: View {
     @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
-        HStack {
+        VStack {
             Text(mc.mc_seconds_display)
                 .font(.system(size: fontSize))
-                .foregroundColor(mc.mc_colorchoice != 0 ?
-                                 mc.mc_color[mc.mc_colorchoice] : (colorScheme == .dark ? .white : .black))
+            HStack {
+                if (mc.mc_seconds_display == "1") {
+                    Text("second")
+                } else {
+                    Text("seconds")
+                }
+                if (mc.mc_countdown) {
+                    Text("until")
+                } else {
+                    Text("since")
+                }
+                Text("midnight")
+            }
         }
+        .foregroundColor(mc.mc_colorchoice != 0 ?
+                         mc.mc_color[mc.mc_colorchoice] : (colorScheme == .dark ? .white : .black))
         .padding(.vertical, vPadding)
         .padding(.horizontal, hPadding)
     }
@@ -118,12 +144,21 @@ struct MetricView: View {
     @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
-        HStack {
+        VStack {
             Text(mc.mc_metric_display)
                 .font(.system(size: fontSize))
-                .foregroundColor(mc.mc_colorchoice != 0 ?
-                                 mc.mc_color[mc.mc_colorchoice] : (colorScheme == .dark ? .white : .black))
+            HStack {
+                Text("hundred microdays")
+                if (mc.mc_countdown) {
+                    Text("until")
+                } else {
+                    Text("since")
+                }
+                Text("midnight")
+            }
         }
+        .foregroundColor(mc.mc_colorchoice != 0 ?
+                         mc.mc_color[mc.mc_colorchoice] : (colorScheme == .dark ? .white : .black))
         .padding(.vertical, vPadding)
         .padding(.horizontal, hPadding)
     }
